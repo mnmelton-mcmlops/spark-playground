@@ -24,6 +24,9 @@ services:
       - SPARK_SSL_ENABLED=no
   minio:
     image: docker.io/bitnami/minio:2022
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
     ports:
       - '9000:9000'
       - '9001:9001'
