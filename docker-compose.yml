@@ -8,6 +8,7 @@ services:
             - SPARK_RPC_ENCRYPTION_ENABLED=no
             - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
             - SPARK_SSL_ENABLED=no
+            - TINI_SUBREAPER=true
         ports:
             - '8080:8080'
             - '4040:4040'
@@ -37,8 +38,12 @@ services:
         image: docker.io/jupyter/pyspark-notebook:spark-3.3.0
         ports:
             - '8888:8888'
+        environment:
+            - TINI_SUBREAPER=true
         volumes:
             - 'notebook_data:/home/jovyan/work'
+        network_mode: "host"
+        pid: "host"
     zookeeper:
         image: confluentinc/cp-zookeeper:7.1.0
         platform: linux/amd64
