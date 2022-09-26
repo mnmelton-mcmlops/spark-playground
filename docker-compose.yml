@@ -10,6 +10,8 @@ services:
             - SPARK_SSL_ENABLED=no
         ports:
             - '8080:8080'
+            - '4040:4040'
+            - '4041:4041'
     spark-worker:
         image: docker.io/bitnami/spark:3.3
         environment:
