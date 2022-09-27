@@ -1,0 +1,20 @@
+docker run --rm -ti -u root -v $(pwd)/notebook_data/test.py:/bitnami/spark/test.py \
+--network spark-playground_spark -p 8888:8888 bitnami/spark:3.3 bash
+
+groupadd -g 1000 -o pyspark
+useradd -m -u 1000 -g 1000 -o -s /bin/bash pyspark
+
+su pyspark
+cd ~
+
+mkdir pyspark
+cd pyspark
+virtualenv .
+source bin/activate
+
+pip install pyspark
+pip install jupyterlab 
+pip install pandas
+pip install matplotlib
+
+jupyter-lab --ip=0.0.0.0

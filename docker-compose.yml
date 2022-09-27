@@ -3,7 +3,6 @@ version: '3'
 services:
     spark:
         image: docker.io/bitnami/spark:3.3
-        hostname: spark
         environment:
             - SPARK_MODE=master
             - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -11,12 +10,11 @@ services:
             - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
             - SPARK_SSL_ENABLED=no
         ports:
-            - '8080:8080'
+            - 8080:8080
         networks:
             - spark
     spark-worker-1:
         image: docker.io/bitnami/spark:3.3
-        hostname: spark-worker-1
         environment:
             - SPARK_MODE=worker
             - SPARK_MASTER_URL=spark://spark:7077
@@ -27,36 +25,31 @@ services:
             - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
             - SPARK_SSL_ENABLED=no
         ports:
-            - '20041:4041'
+            - 20041:4041
         networks:
             - spark
     minio:
         image: docker.io/bitnami/minio:2022
-        hostname: minio
         environment:
             - MINIO_ROOT_USER=minio-root-user
             - MINIO_ROOT_PASSWORD=minio-root-password
         ports:
-            - '9000:9000'
-            - '9001:9001'
+            - 9000:9000
+            - 9001:9001
         volumes:
-            - 'minio_data:/data'
+            - minio_data:/data
         networks:
             - spark
     spark-notebook:
         image: dhinojosa/bitnami-spark-notebook:3.3
-        hostname: spark-notebook
         ports:
-            - '8888:8888'
+            - 8888:8888
         networks:
             - spark
         volumes:
-            - 'notebook_data:/data'
+            - notebook_data:/data
 volumes:
     minio_data:
-        driver: local
     notebook_data:
-        driver: local
 networks:
   spark:
-    driver: bridge

@@ -2,19 +2,34 @@ FROM docker.io/bitnami/spark:3.3
 
 USER root
 
-ARG UNAME=pyspark
-ARG UID=1000
-ARG GID=1000
-RUN groupadd -g $GID -o $UNAME
-RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
-
-USER $UNAME
+EXPOSE 8888
 
 WORKDIR /home/pyspark
 
-ENV PATH="${PATH}:/home/pyspark/.local/bin"
-RUN pip install pyspark --user 
-RUN pip install jupyterlab --user
+RUN virtualenv .
+RUN source bin/activate
+RUN pip install pyspark jupyterlab pandas matplotlib
 
-ENTRYPOINT ["jupyter-lab","--ip=0.0.0.0"]
-EXPOSE 8888
+CMD ["jupyter-lab","--ip=0.0.0.0", "--allow-root"]
+
+
+# docker run --rm -ti -u root -v $(pwd)/notebook_data/test.py:/bitnami/spark/test.py \
+# --network spark-playground_spark -p 8888:8888 bitnami/spark:3.3 bash
+
+# groupadd -g 1000 -o pyspark
+# useradd -m -u 1000 -g 1000 -o -s /bin/bash pyspark
+
+# su pyspark
+# cd ~
+
+# mkdir pyspark
+# cd pyspark
+# virtualenv .
+# source bin/activate
+
+# pip install pyspark
+# pip install jupyterlab 
+# pip install pandas
+# pip install matplotlib
+
+# jupyter-lab --ip=0.0.0.0
