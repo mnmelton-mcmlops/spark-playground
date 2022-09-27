@@ -5,6 +5,7 @@ from pyspark.sql import DataFrame, DataFrameStatFunctions, DataFrameNaFunctions
 from pyspark.sql import functions as F
 from pyspark.sql import types as T
 from pyspark.sql.types import Row
+from subprocess import check_output
 
 SPARK_DRIVER_HOST = check_output(["hostname", "-i"]).decode(encoding="utf-8").strip()
 spark_conf = SparkConf()
