@@ -38,7 +38,7 @@ services:
             - 9000:9000
             - 9001:9001
         volumes:
-            - ./minio_data:/data
+            - minio_data:/data
         networks:
             - spark
     spark-notebook:
@@ -49,5 +49,7 @@ services:
             - spark
         volumes:
             - ./notebook_data:/opt/bitnami/spark/work
+volumes:
+  minio_data:
 networks:
   spark:
