@@ -4,11 +4,16 @@ USER root
 
 EXPOSE 8888
 
-WORKDIR /home/pyspark
+WORKDIR /opt/bitnami/spark/work
 
-RUN virtualenv .
-RUN source bin/activate
-RUN pip install pyspark jupyterlab pandas matplotlib
+COPY cacert.pem /opt/bitnami/spark/venv/lib/python3.8/site-packages/pip/_vendor/certifi/
+ENV VIRTUAL_ENV=/opt/bitnami/spark/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 CMD ["jupyter-lab","--ip=0.0.0.0", "--allow-root"]
 

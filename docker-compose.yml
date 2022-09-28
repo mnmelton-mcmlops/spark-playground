@@ -47,7 +47,7 @@ services:
         networks:
             - spark
         volumes:
-            - notebook_data:/data
+            - notebook_data:/opt/bitnami/spark/work
 volumes:
     minio_data:
     notebook_data:
