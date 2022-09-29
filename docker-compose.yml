@@ -56,6 +56,8 @@ services:
             - "zookeeper_data:/bitnami"
         environment:
             - ALLOW_ANONYMOUS_LOGIN=yes
+        networks:
+            - spark
     kafka:
         image: docker.io/bitnami/kafka:3.2
         ports:
@@ -67,6 +69,8 @@ services:
             - ALLOW_PLAINTEXT_LISTENER=yes
         depends_on:
             - zookeeper
+        networks:
+            - spark
 volumes:
   zookeeper_data:
     driver: local
