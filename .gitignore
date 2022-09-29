@@ -2,4 +2,5 @@
 minio_data/.minio.sys/
 minio_data/.root_password
 minio_data/.root_user
-notebook_data/.ipynb_checkpoints
+**/.ipynb_checkpoints
+**/*-checkpoint.ipynb
