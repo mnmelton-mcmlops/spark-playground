@@ -1,6 +1,6 @@
 FROM bitnami/minio-client
 
-COPY data .
+COPY data data
 COPY run.sh .
 
-ENTRYPOINT ["run.sh"]
+ENTRYPOINT [ "./run.sh" ]
