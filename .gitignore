@@ -4,3 +4,4 @@ minio_data/.root_password
 minio_data/.root_user
 **/.ipynb_checkpoints
 **/*-checkpoint.ipynb
+**/*.swp
