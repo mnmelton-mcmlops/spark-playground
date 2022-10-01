@@ -33,6 +33,7 @@ services:
         environment:
             - MINIO_ROOT_USER=minio-root-user
             - MINIO_ROOT_PASSWORD=minio-root-password
+            - MINIO_DEFAULT_BUCKETS=heart,cities,stocks
         ports:
             - 9000:9000
             - 9001:9001
@@ -71,8 +72,19 @@ services:
             - zookeeper
         networks:
             - spark
+    spark-data-loader:
+        image: dhinojosa/spark-data-loader:latest
+        environment:
+            - MINIO_SERVER_HOST=minio
+            - MINIO_SERVER_ACCESS_KEY=minio-root-user
+            - MINIO_SERVER_SECRET_KEY=minio-root-password
+        depends_on:
+            - minio
+        networks:
+            - spark
 volumes:
   zookeeper_data:
+
     driver: local
   kafka_data:
     driver: local
