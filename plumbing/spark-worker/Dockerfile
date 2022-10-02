@@ -3,8 +3,6 @@ RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.7
 RUN curl https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.3.0/spark-sql-kafka-0-10_2.12-3.3.0.jar --output /opt/bitnami/spark/jars/spark-sql-kafka-0-10_2.12-3.3.0.jar
 RUN curl https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.3.0/kafka-clients-3.3.0.jar --output /opt/bitnami/spark/jars/kafka-clients-3.3.0.jar
 RUN curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.0/hadoop-aws-3.2.0.jar --output /opt/bitnami/spark/jars/hadoop-aws-3.2.0.jar 
-RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.375/aws-java-sdk-bundle-1.11.375.jar --output /opt/bitnami/spark/jars/aws-java-sdk-bundle-1.11.375.jar
-RUN curl https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.3.0/spark-sql-kafka-0-10_2.12-3.3.0.jar --output /opt/bitnami/spark/jars/aws-java-sdk-bundle-1.11.375.jar
 RUN curl https://repo1.maven.org/maven2/org/apache/spark/spark-token-provider-kafka-0-10_2.12/3.3.0/spark-token-provider-kafka-0-10_2.12-3.3.0.jar --output /opt/bitnami/spark/jars/spark-token-provider-kafka-0-10_2.12-3.3.0.jar
 RUN curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client-runtime/3.3.2/hadoop-client-runtime-3.3.2.jar --output /opt/bitnami/spark/jars/hadoop-client-runtime-3.3.2.jar
 RUN curl https://repo1.maven.org/maven2/org/spark-project/spark/unused/1.0.0/unused-1.0.0.jar --output /opt/bitnami/spark/jars/unused-1.0.0.jar
